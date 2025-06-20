@@ -1,4 +1,4 @@
-import { doubt as _doubt, user } from "../models";
+import { doubt as _doubt, user } from "../models/doubt.model";
 
 export async function addDoubt(req, res) {
   try {

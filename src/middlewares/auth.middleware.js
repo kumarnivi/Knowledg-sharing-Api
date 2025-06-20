@@ -1,12 +1,12 @@
-import { verify } from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-export default (req, res, next) => {
+module.exports = (req, res, next) => {
   const token = req.headers["authorization"];
   if (!token) return res.status(403).json({ message: "Token required" });
 
   try {
-    const decoded = verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (err) {

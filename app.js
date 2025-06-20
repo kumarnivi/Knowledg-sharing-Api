@@ -1,12 +1,12 @@
-import express, { json } from "express";
+const express = require("express");
+const dotenv = require("dotenv");
+const authRoutes = require("./src/routes/auth.routes");
+const doubtRoutes = require("./src/routes/doubt.routes");
+
+dotenv.config();
+
 const app = express();
-import { sequelize } from "./models";
-require("dotenv").config();
-
-app.use(json());
-
-import authRoutes from "./routes/auth.routes";
-import doubtRoutes from "./routes/doubt.routes";
+app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/doubts", doubtRoutes);

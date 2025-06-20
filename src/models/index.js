@@ -1,13 +1,13 @@
-import { Sequelize, DataTypes } from "sequelize";
-import { DB, USER, PASSWORD, HOST, dialect as _dialect } from "../config/db.config";
+const { Sequelize, DataTypes } = require("sequelize");
+const dbConfig = require("../config/db.config");
 
 const sequelize = new Sequelize(
-  DB,
-  USER,
-  PASSWORD,
+  dbConfig.DB,
+  dbConfig.USER,
+  dbConfig.PASSWORD,
   {
-    host: HOST,
-    dialect: _dialect,
+    host: dbConfig.HOST,
+    dialect: dbConfig.dialect,
   }
 );
 
@@ -21,4 +21,4 @@ db.doubt = require("./doubt.model")(sequelize, DataTypes);
 db.user.hasMany(db.doubt);
 db.doubt.belongsTo(db.user);
 
-export default db;
+module.exports = db;
